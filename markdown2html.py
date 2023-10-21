@@ -3,6 +3,7 @@
 markdown2html
 This module receives two arguments: The input markdown (.md) and the output html (.html).
 """
+
 import os
 import sys
 
@@ -25,49 +26,62 @@ def markdown2html(md, html):
                 if inside_paragraph:
                     html_str.append('</p>\n')
                     inside_paragraph = False
-                html_str.append('<ul>\n')  
+                html_str.append('<ul>\n')
                 inside_list = True
             count = line.count('-')
             text = line[count:].strip()
-            html_str.append('<li>{}</li>\n'.format(text))
+            html_str.append('<li>{}</li>\n'.format(parse_markdown(text)))
         elif line.startswith('*'):
             if not inside_order_list:
                 if inside_paragraph:
                     html_str.append('</p>\n')
                     inside_paragraph = False
-                html_str.append('<ol>\n')  
+                html_str.append('<ol>\n')
                 inside_order_list = True
             count = line.count('*')
             text = line[count:].strip()
-            html_str.append('<li>{}</li>\n'.format(text))
+            html_str.append('<li>{}</li>\n'.format(parse_markdown(text)))
         else:
             if inside_list:
-                html_str.append('</ul>\n') 
+                html_str.append('</ul>\n')
                 inside_list = False
             if inside_order_list:
-                html_str.append('</ol>\n') 
+                html_str.append('</ol>\n')
                 inside_order_list = False
             if line.strip() != '':
                 if not inside_paragraph:
-                    html_str.append('<p>\n') 
+                    html_str.append('<p>\n')
                     inside_paragraph = True
                 text = line.strip()
-                html_str.append('{}<br/>\n'.format(text))
+                html_str.append('{}<br/>\n'.format(parse_markdown(text)))
             else:
                 if inside_paragraph:
                     html_str = html_str[:-1] # Remove the last <br/>
-                    html_str.append('</p>\n') 
+                    html_str.append('</p>\n')
                     inside_paragraph = False
 
-    if inside_list: 
+    if inside_list:
         html_str.append('</ul>\n')
-    if inside_order_list: 
+    if inside_order_list:
         html_str.append('</ol>\n')
     if inside_paragraph:
-        html_str = html_str[:-1] 
+        html_str = html_str[:-1]
         html_str.append('</p>\n')
 
     with open(html, 'w') as f:
         f.writelines(html_str)
 
     return 0
+
+def parse_markdown(text):
+    text = text.replace('**', '<b>').replace('__', '<em>').replace('**', '</b>').replace('__', '</em>')
+    return text
+
+if __name__ == "__main__":
+    if len(sys.argv) != 3:
+        print("Usage: python markdown2html.py input.md output.html", file=sys.stderr)
+        sys.exit(1)
+    md_file = sys.argv[1]
+    html_file = sys.argv[2]
+    markdown2html(md_file, html_file)
+
