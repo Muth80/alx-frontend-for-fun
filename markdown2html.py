@@ -3,9 +3,6 @@
 markdown2html
 This module receives two arguments: The input markdown (.md) and the output html (.html).
 """
-import sys
-import os
-import re
 
 def markdown2html(md, html):
     if not os.path.isfile(md):
