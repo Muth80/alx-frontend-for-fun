@@ -3,6 +3,8 @@
 markdown2html
 This module receives two arguments: The input markdown (.md) and the output html (.html).
 """
+import os
+import sys
 
 def markdown2html(md, html):
     if not os.path.isfile(md):
@@ -10,42 +12,60 @@ def markdown2html(md, html):
         return 1
 
     with open(md, 'r') as f:
-        markdown = f.readlines()
+        markdown = f.read().split('\n')
 
     html_str = []
     inside_list = False
     inside_order_list = False
+    inside_paragraph = False
 
     for line in markdown:
         if line.startswith('-'):
             if not inside_list:
-                html_str.append('<ul>\n')  # Start list
+                if inside_paragraph:
+                    html_str.append('</p>\n')
+                    inside_paragraph = False
+                html_str.append('<ul>\n')  
                 inside_list = True
             count = line.count('-')
             text = line[count:].strip()
-            html_str.append('<li>{}</li>\n'.format(text))  # Add list item
+            html_str.append('<li>{}</li>\n'.format(text))
         elif line.startswith('*'):
             if not inside_order_list:
-                html_str.append('<ol>\n')  # Start order list
+                if inside_paragraph:
+                    html_str.append('</p>\n')
+                    inside_paragraph = False
+                html_str.append('<ol>\n')  
                 inside_order_list = True
             count = line.count('*')
             text = line[count:].strip()
-            html_str.append('<li>{}</li>\n'.format(text))  # Add list item
+            html_str.append('<li>{}</li>\n'.format(text))
         else:
             if inside_list:
-                html_str.append('</ul>\n')  # End list
+                html_str.append('</ul>\n') 
                 inside_list = False
             if inside_order_list:
-                html_str.append('</ol>\n')  # End order list
+                html_str.append('</ol>\n') 
                 inside_order_list = False
-            count = line.count('#')
-            text = line[count:].strip()
-            html_str.append('<h{0}>{1}</h{0}>\n'.format(count, text))
+            if line.strip() != '':
+                if not inside_paragraph:
+                    html_str.append('<p>\n') 
+                    inside_paragraph = True
+                text = line.strip()
+                html_str.append('{}<br/>\n'.format(text))
+            else:
+                if inside_paragraph:
+                    html_str = html_str[:-1] # Remove the last <br/>
+                    html_str.append('</p>\n') 
+                    inside_paragraph = False
 
-    if inside_list:  # Close list if still open
+    if inside_list: 
         html_str.append('</ul>\n')
-    if inside_order_list:  # Close order list if still open
+    if inside_order_list: 
         html_str.append('</ol>\n')
+    if inside_paragraph:
+        html_str = html_str[:-1] 
+        html_str.append('</p>\n')
 
     with open(html, 'w') as f:
         f.writelines(html_str)
