@@ -5,6 +5,7 @@ This module receives two arguments: The input markdown (.md) and the output html
 """
 import sys
 import os
+import re
 
 def markdown2html(md, html):
     if not os.path.isfile(md):
@@ -15,10 +16,26 @@ def markdown2html(md, html):
         markdown = f.readlines()
 
     html_str = []
+    inside_list = False
+
     for line in markdown:
-        count = line.count('#')
-        text = line[count:].strip()
-        html_str.append('<h{0}>{1}</h{0}>\n'.format(count, text))
+        if '-' in line:
+            if not inside_list:
+                html_str.append('<ul>\n')  # Start list
+                inside_list = True
+            count = line.count('-')
+            text = line[count:].strip()
+            html_str.append('<li>{}</li>\n'.format(text))  # Add list item
+        else:
+            if inside_list:
+                html_str.append('</ul>\n')  # End list
+                inside_list = False
+            count = line.count('#')
+            text = line[count:].strip()
+            html_str.append('<h{0}>{1}</h{0}>\n'.format(count, text))
+
+    if inside_list:  # Close list if still open
+        html_str.append('</ul>\n')
 
     with open(html, 'w') as f:
         f.writelines(html_str)
