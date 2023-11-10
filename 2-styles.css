@@ -1,0 +1,53 @@
+.toggle {
+    position: relative;
+    width: 60px; /* Set your desired width for the toggle */
+    height: 30px; /* Set your desired height for the toggle */
+}
+
+.toggle-cb {
+    display: none;
+}
+
+.toggle-label {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: #ccc; /* Set the default background color for unchecked state */
+    border-radius: 15px; /* Half of the height to create a round appearance */
+    position: relative;
+    cursor: pointer;
+}
+
+.toggle-inner {
+    content: "NO";
+    color: #fff; /* Set the text color for unchecked state */
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 30px;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(0);
+}
+
+.toggle-switch {
+    width: 50%;
+    height: 100%;
+    background: #ff0000; /* Set the background color for checked state */
+    border-radius: 15px; /* Half of the height to create a round appearance */
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(0);
+}
+
+.toggle-cb:checked + .toggle-label .toggle-inner {
+    transform: translateX(100%);
+}
+
+.toggle-cb:checked + .toggle-label .toggle-switch {
+    transform: translateX(100%);
+}
+
