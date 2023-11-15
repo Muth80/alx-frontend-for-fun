@@ -1,9 +1,9 @@
-/* My style */
-body {
-  $main-text-color: #3D3D3D;
+/* My Sass file */
 
-  p {
-    color: $main-text-color;
-  }
+$main-text-color: #3D3D3D;
+
+body,
+p {
+  color: $main-text-color;
 }
 
