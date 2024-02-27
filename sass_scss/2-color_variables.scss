@@ -1,0 +1,24 @@
+/* Task: Assign the text color #3D3D3D to the HTML tags body and p,
+* and the background color #6D6D6D to the HTML tags body and h2
+* using 2 Sass variables.
+*/
+
+// Define Sass variables for colors
+$text-color: #3D3D3D;
+$background-color: #6D6D6D;
+
+// Apply styles to body, affecting text and background color
+body {
+  color: $text-color;
+  background-color: $background-color;
+}
+
+// Apply text color to p tag
+p {
+  color: $text-color;
+}
+
+// Apply background color to h2 tag
+h2 {
+  background-color: $background-color;
+}
