@@ -1,0 +1,7 @@
+/* Task: Create H1-H5 tags with incrementing font sizes */
+
+@for $i from 1 through 5 {
+  h#{$i} {
+    font-size: $i + 0px; // Adding 0px ensures the output has units
+  }
+}
