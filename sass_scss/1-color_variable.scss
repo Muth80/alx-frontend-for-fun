@@ -1,8 +1,7 @@
 /* Task: Use a variable to assign #3D3D3D as the text color for body and p */
 
-$text-color: #3D3D3D; 
+$primary-color: #3D3D3D;
 
-body, 
-p {
-  color: $text-color;
+body, p {
+  color: $primary-color;
 }
