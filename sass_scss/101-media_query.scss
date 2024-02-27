@@ -1,0 +1,11 @@
+/* Task: Adjust h1 font size based on screen width */
+
+h1 {
+  font-size: 20px; /* Default font size */
+}
+
+@media screen and (max-width: 320px) { 
+  h1 {
+    font-size: 14px;  /* Smaller font size on smaller screens */
+  }
+}
