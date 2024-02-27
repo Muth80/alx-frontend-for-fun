@@ -1,0 +1,9 @@
+/* Assign text colors to elements within body, and specifically to elements with class .red */
+
+body {
+  color: #3D3D3D; // Setting default text color for all elements within body
+  
+  .red {
+    color: #FF0000; // Overriding text color for elements with class .red
+  }
+}
