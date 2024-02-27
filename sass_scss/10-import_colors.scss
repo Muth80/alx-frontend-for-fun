@@ -1,0 +1,15 @@
+/* Task: Use imported color variables to style classes */
+
+@import "10-colors"; // Import the colors file
+
+.red {
+  color: $red; 
+}
+
+.green { 
+  color: $green; 
+}
+
+.blue { 
+  color: $blue;  
+}
