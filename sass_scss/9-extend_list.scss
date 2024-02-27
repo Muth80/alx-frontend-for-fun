@@ -1,0 +1,15 @@
+/* Task: Extend styles and assign specific colors */
+
+.info {
+  font-size: 12px; 
+}
+
+.success {
+  @extend .info; // Inherit styles from the .info class
+  color: #00FF00; 
+}
+
+.warning {
+  @extend .info; // Inherit styles from the .info class
+  color: #FF0000; 
+}
