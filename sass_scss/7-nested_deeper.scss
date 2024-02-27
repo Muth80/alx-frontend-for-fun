@@ -1,0 +1,13 @@
+/* Task: Adjust font sizes with nested selectors */
+
+body {
+  font-size: 14px; // Base font size for the body
+
+  h1 { 
+    font-size: 16px; // Larger font size for all h1 within the body
+
+    &.smaller { // Specific style for h1 with class "smaller" within the body
+      font-size: 12px; 
+    } 
+  }
+}
