@@ -1,0 +1,27 @@
+/* Task: Multiple media queries for responsive h1 styles */
+
+h1 {
+  font-size: 20px; /* Default base font size */
+}
+
+@media screen and (max-width: 960px) {
+  h1 {
+    font-size: 18px; 
+  }
+}
+
+@media screen and (max-width: 640px) {
+  h1 {
+    font-size: 16px; 
+  }
+}
+
+@media screen and (max-width: 320px) {
+  h1 {
+    font-size: 14px; 
+  }
+
+  h1.small { 
+    color: #1D1D1D; 
+  }
+}
