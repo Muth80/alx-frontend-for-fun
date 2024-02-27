@@ -1,0 +1,9 @@
+/* Task: Target first-child elements with class "red" within the body */
+
+body {
+  color: #3D3D3D; // Text color for elements within body
+
+  > .red {
+    color: #FF0000;  // Text color for first-child elements with class "red"
+  }
+}
