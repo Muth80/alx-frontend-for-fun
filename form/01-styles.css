@@ -646,20 +646,27 @@ ul.row {
   content: "";
 }
 
-/* Center the entire Comments Section */
+/*** FORM ***/
+
+/* Comment section
+    ============================= */
+
 .post-comments {
   width: 80%;
-  max-width: 600px; /* Adjust based on your preference */
-  margin: 2rem auto; /* Horizontally centering */
-  text-align: center; /* This centers the text inside */
-  padding: 1rem; /* Optional: Space inside the section */
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Optional: Adds some depth */
-  background: #fff; /* Optional: In case your site has a non-white background */
+  margin: 10rem 0 0 auto;
+  padding-left: 7rem;
 }
+
+.post-comments .section-title {
+  font-variant: small-caps;
+}
+
+/* Basic form
+    ============================= */
 
 form {
   display: flex;
   flex-direction: column;
-  align-items: center; /* This will center the form fields vertically */
+  padding: 1rem 0;
+  margin: 0;
 }
-
