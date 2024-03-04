@@ -1,0 +1,27 @@
+/* General Styles */
+body {
+  font-family: sans-serif; /* A basic font */
+}
+
+.container {
+  display: flex;         /* Turn the container into a flexbox */
+  flex-wrap: wrap;       /* Allow items to wrap to the next line */
+  justify-content: space-between; /* Distribute boxes with space in-between */
+}
+
+.box {
+  width: 200px;   /* Set a width for the boxes */
+  height: 150px;     /* Set a height for the boxes */
+  border: 1px solid #ccc; /* A subtle border */ 
+  display: flex;            /* To center text within boxes */
+  justify-content: center;  /* Center horizontally */       
+  align-items: center;      /* Center vertically */
+}
+
+/* Custom colors for each box */
+.box1 { background-color: #FFC0CB; } /* Light Pink */
+.box2 { background-color: #E6E6FA; } /* Lavender */
+.box3 { background-color: #E0FFFF; } /* Light Cyan*/
+.box4 { background-color: #FFF0F5; } /* Blush */
+.box5 { background-color: #F0FFF0; } /* Honeydew */
+
